@@ -1,0 +1,86 @@
+@import '../_variables.sass';
+
+.education {
+  margin: auto;
+  margin-bottom: 20px;
+  .arrow-down {
+    top: -2px !important;
+    right: 4px !important;
+  }
+  .universities,
+  .courses,
+  .books {
+    position: relative;
+    display: block;
+    padding: 0;
+    margin: 10px 10px;
+    overflow: hidden;
+    border: 1px solid #d4d4d4;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    h3 {
+      color: white;
+      background-color: $primary;
+      padding: 10px 15px;
+    }
+    .content {
+      padding: 0;
+      margin: 0;
+      ul {
+        margin: 0;
+        padding: 15px;
+        position: relative;
+        list-style-type: none;
+        li {
+          margin-bottom: 4px;
+        }
+        li:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+  .arrow {
+    cursor: pointer;
+  }
+  .arrow-down {
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    top: 18px;
+    right: 12px;
+  }
+  .arrow-down:before,
+  .arrow-down:after {
+    content: '';
+    display: block;
+    width: 15px;
+    height: 5px;
+    background: white;
+    position: absolute;
+    top: 18px;
+    transition: transform 0.5s;
+  }
+  .arrow-down:before {
+    right: 18px;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transform: rotate(45deg);
+  }
+  .arrow-down:after {
+    right: 10px;
+    transform: rotate(-45deg);
+  }
+  .arrow-down.active:before {
+    transform: rotate(-45deg);
+  }
+  .arrow-down.active:after {
+    transform: rotate(45deg);
+  }
+}
+@media (min-width: 768px) {
+  .education {
+    width: 60%;
+  }
+}
