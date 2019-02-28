@@ -1,0 +1,119 @@
+// @import '~react-bulma-components/src/index.sass';
+@import '~bulma/sass/utilities/initial-variables';
+$primary: #00a677;
+$info: #f4e770;
+$danger: #ba324f;
+$success: #659cd3;
+$warning: #f6bd60;
+$light: #f9faff;
+$dark: darkgrey;
+@import 'bulma/bulma.sass';
+@import '../_variables.sass';
+
+* {
+  font-family: OpenSans, Roboto, Arial, sans-serif !important;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+}
+h1,
+h2,
+h3,
+h4 {
+  font-family: MerriweatherSans, Roboto, Arial, sans-serif !important;
+  font-style: normal;
+}
+h1 {
+  font-weight: 700;
+}
+h2,
+h3,
+h4 {
+  font-weight: 400;
+}
+html {
+  line-height: 1.82em;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+body {
+  position: relative;
+  height: 100%;
+  background-color: $light;
+}
+
+.main-content {
+  min-height: 100vh; /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 120px; /* height of your footer */
+}
+.container {
+  text-align: center;
+}
+.hero-body {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.title {
+  display: block;
+  font-weight: bolder;
+  font-size: 60px;
+  letter-spacing: 1px;
+}
+.subtitle {
+  font-weight: 300;
+  font-size: 35px;
+  color: #526488;
+  word-spacing: 5px;
+  padding-bottom: 0;
+  margin-bottom: 6px !important;
+}
+.links {
+  padding-top: 15px;
+}
+.main-tabs li.is-active a {
+  background-color: $light !important;
+}
+.tabs li a,
+.tabs li.is-active a {
+  color: #5a5a5a;
+}
+.footer {
+  color: white;
+  padding-bottom: 48px;
+  position: absolute;
+  bottom: 0;
+  height: 120px;
+  width: 100%;
+}
+.footer a {
+  color: white;
+}
+.contact-links {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+}
+.contact-links a {
+  margin: 0;
+  img {
+    margin-bottom: 0;
+  }
+}
+.main-tabs li a,
+.contact-links a span,
+.navbar-end .navbar-item {
+  font-family: MerriweatherSans, Roboto, Arial, sans-serif !important;
+}
