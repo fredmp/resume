@@ -1,0 +1,33 @@
+.main-text {
+  width: 50%;
+  margin: auto;
+  .contact-links {
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    a {
+      margin: 10px;
+      padding: 20px 0;
+      width: 200px;
+    }
+  }
+  h4 {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+}
+@media (max-width: 1100px) {
+  .main-text {
+    width: 90%;
+    .contact-links a {
+      margin: 5px;
+      padding: 0;
+      width: 200px;
+      span,
+      img {
+        vertical-align: text-bottom;
+      }
+    }
+  }
+}
