@@ -1,4 +1,5 @@
 @import '../_variables.sass';
+@import './arrow.scss';
 
 .education {
   margin: auto;
@@ -40,43 +41,6 @@
         }
       }
     }
-  }
-  .arrow {
-    cursor: pointer;
-  }
-  .arrow-down {
-    width: 40px;
-    height: 40px;
-    position: absolute;
-    top: 18px;
-    right: 12px;
-  }
-  .arrow-down:before,
-  .arrow-down:after {
-    content: '';
-    display: block;
-    width: 15px;
-    height: 5px;
-    background: white;
-    position: absolute;
-    top: 18px;
-    transition: transform 0.5s;
-  }
-  .arrow-down:before {
-    right: 18px;
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-    transform: rotate(45deg);
-  }
-  .arrow-down:after {
-    right: 10px;
-    transform: rotate(-45deg);
-  }
-  .arrow-down.active:before {
-    transform: rotate(-45deg);
-  }
-  .arrow-down.active:after {
-    transform: rotate(45deg);
   }
 }
 @media (min-width: 768px) {
