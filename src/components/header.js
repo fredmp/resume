@@ -53,10 +53,25 @@ const Header = ({ name, title }) => (
       </div>
     </section>
     <div className="tabs main-tabs is-boxed is-centered">
-      <ul>
-        <li className="{'is-active': isActive('index') }">
-          <Link to="/">About me</Link>
-        </li>
+      <Link to="/" activeClassName="is-active" key="about">
+        About me
+      </Link>
+      <Link to="/experience" activeClassName="is-active" key="experience">
+        Experience
+      </Link>
+      <Link to="/skillset" activeClassName="is-active" key="skillset">
+        Skillset
+      </Link>
+      <Link to="/projects" activeClassName="is-active" key="projects">
+        Projects
+      </Link>
+      <Link to="/education" activeClassName="is-active" key="education">
+        Education
+      </Link>
+      {/* <ul>
+        <Link to="/" activeClassName="is-active">
+          About me
+        </Link>
         <li className="{'is-active': isActive('experience') }">
           <a href="/experience">Experience</a>
         </li>
@@ -69,7 +84,7 @@ const Header = ({ name, title }) => (
         <li className="{'is-active': isActive('education') }">
           <Link to="/education">Education</Link>
         </li>
-      </ul>
+      </ul> */}
     </div>
   </Fragment>
 );

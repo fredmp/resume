@@ -83,7 +83,10 @@ body {
 .links {
   padding-top: 15px;
 }
-.main-tabs li.is-active a {
+.main-tabs {
+  justify-content: center;
+}
+.main-tabs a.is-active {
   background-color: $light !important;
 }
 .tabs li a,
@@ -112,8 +115,19 @@ body {
     margin-bottom: 0;
   }
 }
-.main-tabs li a,
+.main-tabs a,
 .contact-links a span,
 .navbar-end .navbar-item {
   font-family: MerriweatherSans, Roboto, Arial, sans-serif !important;
+}
+.tabs {
+  margin-bottom: 0;
+}
+.main-tabs {
+  border-bottom-color: #dbdbdb;
+  border-bottom-style: solid;
+  border-bottom-width: 1px;
+  a:hover {
+    background-color: whitesmoke !important;
+  }
 }

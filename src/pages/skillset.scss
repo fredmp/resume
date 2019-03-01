@@ -1,0 +1,44 @@
+@import '../_variables.sass';
+
+.skillset_groups {
+  margin: auto;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  .skillset {
+    padding: 15px;
+    margin: 10px 10px;
+    max-width: 80%;
+    border: 1px solid #d4d4d4;
+    border-radius: 2px;
+    -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.175);
+    h3 {
+      margin-bottom: 10px;
+    }
+  }
+  .skill {
+    border-bottom: dotted 1px #cccccc;
+    width: 300px;
+    vertical-align: middle;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    span {
+      width: 100%;
+    }
+  }
+  .skill:last-child {
+    border-bottom: none;
+  }
+  progress {
+    width: 200px;
+    margin: auto;
+  }
+}
+@media (min-width: 768px) {
+  .skillset_groups {
+    width: 80%;
+  }
+}

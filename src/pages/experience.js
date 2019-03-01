@@ -34,7 +34,7 @@ const renderCompany = (index, company, allProjects) => {
         <div className="timeline-heading">
           <h2 className="timeline-company">{company.name}</h2>
           {company.team && <span>{`(${company.team})`}</span>}
-          {'- '}
+          {' - '}
           <span className="timeline-position">{company.position}</span>
           <p className="timeline-period">
             <small className="text-muted">
@@ -51,7 +51,7 @@ const renderCompany = (index, company, allProjects) => {
           <div className="timeline-body">
             <div className="tabs is-boxed">
               <ul>
-                <li className={isTabSelected(selectedTab, 'description') && 'is-active'}>
+                <li className={isTabSelected(selectedTab, 'description') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('description')}>
                     <span className="icon is-small">
                       <i className="fas fa-image" aria-hidden="true" />
@@ -59,7 +59,7 @@ const renderCompany = (index, company, allProjects) => {
                     <span>Description</span>
                   </a>
                 </li>
-                <li className={isTabSelected(selectedTab, 'projects') && 'is-active'}>
+                <li className={isTabSelected(selectedTab, 'projects') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('projects')}>
                     <span className="icon is-small">
                       <i className="fas fa-music" aria-hidden="true" />
@@ -67,7 +67,7 @@ const renderCompany = (index, company, allProjects) => {
                     <span>Projects</span>
                   </a>
                 </li>
-                <li className={isTabSelected(selectedTab, 'technologies') && 'is-active'}>
+                <li className={isTabSelected(selectedTab, 'technologies') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('technologies')}>
                     <span className="icon is-small">
                       <i className="fas fa-film" aria-hidden="true" />
