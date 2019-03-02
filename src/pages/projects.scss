@@ -95,3 +95,60 @@ hr {
     width: 80%;
   }
 }
+.modal {
+  .project-modal {
+    padding: 0;
+    margin: 0;
+    .content {
+      div {
+        margin-bottom: 20px;
+        p {
+          margin-bottom: 5px;
+        }
+        ul {
+          margin-top: 0;
+          list-style-type: square;
+          a {
+            color: #5a5a5a;
+          }
+        }
+      }
+    }
+  }
+  .tags {
+    margin-top: 10px;
+    margin-bottom: 4px !important;
+    display: inline-block;
+    vertical-align: text-top;
+    max-width: 100%;
+    padding: 0;
+    div {
+      margin-bottom: 0 !important;
+    }
+  }
+  hr {
+    margin-top: 10px;
+    margin-bottom: 0;
+  }
+  section {
+    position: relative;
+    padding-bottom: 4px !important;
+    img {
+      position: absolute;
+      float: right;
+      right: 8px;
+      bottom: 8px;
+      margin-bottom: 0;
+    }
+  }
+  @media (min-width: 1280px) {
+    .modal-card {
+      width: 50%;
+    }
+  }
+  @media (min-width: 320px) and (max-width: 1280px) {
+    .modal-card {
+      width: 90%;
+    }
+  }
+}

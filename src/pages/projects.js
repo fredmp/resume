@@ -8,19 +8,28 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import ProjectModal from '../components/projectModal';
 
 import searchIcon from '../images/icons/search.svg';
 import javascriptIcon from '../images/icons/javascript.svg';
 import rubyIcon from '../images/icons/ruby.svg';
 import javaIcon from '../images/icons/java.svg';
 
-const COLORS_BY_LANGUAGE = {
+const BG_COLOR_BY_LANGUAGE = {
   ruby: 'has-background-danger',
   javascript: 'has-background-info has-text-grey-dark',
   java: 'has-background-success',
 };
 
-const colorByLanguage = language => COLORS_BY_LANGUAGE[language] || 'has-background-primary';
+const TEXT_COLOR_BY_LANGUAGE = {
+  ruby: 'has-text-white',
+  javascript: 'has-text-grey-dark',
+  java: 'has-text-white',
+};
+
+const bgColorByLanguage = language => BG_COLOR_BY_LANGUAGE[language] || 'has-background-primary';
+const textColorByLanguage = language =>
+  TEXT_COLOR_BY_LANGUAGE[language] || 'has-background-primary has-text-white';
 
 const filterProjects = (company, projects, search, language) => {
   const searchIncludes = value =>
@@ -57,10 +66,13 @@ const filterProjects = (company, projects, search, language) => {
     );
 };
 
+const findCompany = (companyId, companies) => companies.find(company => company.id === companyId);
+
 const Projects = ({ projects, companies }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [selectingCompany, setSelectingCompany] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
   const [search, setSearch] = useState('');
 
   const filteredProjects = filterProjects(selectedCompany, projects, search, selectedLanguage);
@@ -72,6 +84,15 @@ const Projects = ({ projects, companies }) => {
     setSelectingCompany(false);
   };
 
+  const showModal = project => {
+    const company = findCompany(project.company_id, companies);
+    const bgColor = bgColorByLanguage(project.language);
+    const textColor = textColorByLanguage(project.language);
+    setSelectedProject({ ...project, company, bgColor, textColor });
+  };
+
+  const closeModal = () => setSelectedProject(null);
+
   return (
     <Layout>
       <SEO title="Projects" keywords={['projects']} />
@@ -80,27 +101,27 @@ const Projects = ({ projects, companies }) => {
           <p className="buttons">
             <a
               onClick={() => setLanguage('ruby')}
-              className={`button is-danger ${selectedLanguage === 'ruby' ? 'is-outlined' : ''}`}
+              className={`button is-danger ${selectedLanguage === 'ruby' ? '' : 'is-outlined'}`}
             >
               <span>Ruby</span>
             </a>
             <a
               onClick={() => setLanguage('javascript')}
               className={`button is-info ${
-                selectedLanguage === 'javascript' ? 'is-outlined has-text-grey-dark' : ''
+                selectedLanguage === 'javascript' ? '' : 'is-outlined has-text-grey-dark'
               }`}
             >
               <span>Javascript</span>
             </a>
             <a
               onClick={() => setLanguage('java')}
-              className={`button is-success ${selectedLanguage === 'java' ? 'is-outlined' : ''}`}
+              className={`button is-success ${selectedLanguage === 'java' ? '' : 'is-outlined'}`}
             >
               <span>Java</span>
             </a>
             <a
               onClick={() => setLanguage('other')}
-              className={`button is-primary ${selectedLanguage === 'other' ? 'is-outlined' : ''}`}
+              className={`button is-primary ${selectedLanguage === 'other' ? '' : 'is-outlined'}`}
             >
               <span>Other</span>
             </a>
@@ -159,11 +180,11 @@ const Projects = ({ projects, companies }) => {
           </div>
         </div>
 
-        <project-modal item="selectedProject" />
+        {selectedProject && <ProjectModal project={selectedProject} closeModal={closeModal} />}
         <div className="projects">
           {filteredProjects.map(project => (
-            <div className="project" key={project.name}>
-              <h3 className={colorByLanguage(project.language)}>{project.name}</h3>
+            <div className="project" key={project.name} onClick={() => showModal(project)}>
+              <h3 className={bgColorByLanguage(project.language)}>{project.name}</h3>
               <div className="content">
                 {project.description_entries.map(description => (
                   <p key={description}>{description}</p>
@@ -202,6 +223,7 @@ Projects.propTypes = {
       name: PropTypes.string,
       company_id: PropTypes.string,
       language: PropTypes.string,
+      links: PropTypes.arrayOf(PropTypes.string),
       technologies: PropTypes.arrayOf(PropTypes.string),
       description_entries: PropTypes.arrayOf(PropTypes.string),
     }),
@@ -224,6 +246,7 @@ const query = graphql`
           name
           company_id
           language
+          links
           technologies
           description_entries
         }
