@@ -2,7 +2,7 @@
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import './projects.scss';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
@@ -68,7 +68,7 @@ const filterProjects = (company, projects, search, language) => {
 
 const findCompany = (companyId, companies) => companies.find(company => company.id === companyId);
 
-const Projects = ({ projects, companies }) => {
+const Projects = ({ projects, companies, location }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
   const [selectingCompany, setSelectingCompany] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(null);
@@ -92,6 +92,14 @@ const Projects = ({ projects, companies }) => {
   };
 
   const closeModal = () => setSelectedProject(null);
+
+  useEffect(() => {
+    const projectName = location.state && location.state.projectName;
+    if (projectName) {
+      const project = projects.find(p => p.name === projectName);
+      showModal(project);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -217,6 +225,10 @@ const Projects = ({ projects, companies }) => {
   );
 };
 
+Projects.defaultProps = {
+  location: null,
+};
+
 Projects.propTypes = {
   projects: PropTypes.arrayOf(
     PropTypes.shape({
@@ -236,6 +248,11 @@ Projects.propTypes = {
       position: PropTypes.string,
     }),
   ).isRequired,
+  location: PropTypes.shape({
+    state: PropTypes.shape({
+      projectName: PropTypes.string,
+    }),
+  }),
 };
 
 const query = graphql`
@@ -260,13 +277,16 @@ const query = graphql`
     }
   }
 `;
-export default () => (
+
+// eslint-disable-next-line react/prop-types
+export default ({ location }) => (
   <StaticQuery
     query={query}
     render={data => (
       <Projects
         projects={data.site.siteMetadata.projects}
         companies={data.site.siteMetadata.companies}
+        location={location}
       />
     )}
   />

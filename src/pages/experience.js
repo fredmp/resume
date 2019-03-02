@@ -4,7 +4,7 @@
 import './experience.scss';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { StaticQuery, graphql } from 'gatsby';
+import { StaticQuery, graphql, Link } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
@@ -83,7 +83,11 @@ const renderCompany = (index, company, allProjects) => {
                   {projects.length > 0 && (
                     <ul className="projects">
                       {projects.map(project => (
-                        <li key={`${project.name}-${company.id}`}>{project.name}</li>
+                        <li key={`${project.name}-${company.id}`}>
+                          <Link to="/projects" state={{ projectName: project.name }}>
+                            {project.name}
+                          </Link>
+                        </li>
                       ))}
                     </ul>
                   )}
