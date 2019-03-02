@@ -53,25 +53,16 @@ const renderCompany = (index, company, allProjects) => {
               <ul>
                 <li className={isTabSelected(selectedTab, 'description') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('description')}>
-                    <span className="icon is-small">
-                      <i className="fas fa-image" aria-hidden="true" />
-                    </span>
                     <span>Description</span>
                   </a>
                 </li>
                 <li className={isTabSelected(selectedTab, 'projects') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('projects')}>
-                    <span className="icon is-small">
-                      <i className="fas fa-music" aria-hidden="true" />
-                    </span>
                     <span>Projects</span>
                   </a>
                 </li>
                 <li className={isTabSelected(selectedTab, 'technologies') ? 'is-active' : ''}>
                   <a onClick={() => setSelectedTab('technologies')}>
-                    <span className="icon is-small">
-                      <i className="fas fa-film" aria-hidden="true" />
-                    </span>
                     <span>Technologies</span>
                   </a>
                 </li>
