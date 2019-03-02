@@ -4,16 +4,18 @@
 import './experience.scss';
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
-import { StaticQuery, graphql, Link } from 'gatsby';
+import { StaticQuery, graphql } from 'gatsby';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
+import ProjectModal from '../components/projectModal';
+import { decorateProject } from '../util';
 
 const arrowClasses = state => `arrow arrow-down ${state && 'active'}`;
 
 const isTabSelected = (tab, name) => tab === name;
 
-const renderCompany = (index, company, allProjects) => {
+const renderCompany = (index, company, allProjects, showModal) => {
   const [showContent, setShowContent] = useState(true);
   const [selectedTab, setSelectedTab] = useState('description');
 
@@ -75,9 +77,7 @@ const renderCompany = (index, company, allProjects) => {
                     <ul className="projects">
                       {projects.map(project => (
                         <li key={`${project.name}-${company.id}`}>
-                          <Link to="/projects" state={{ projectName: project.name }}>
-                            {project.name}
-                          </Link>
+                          <a onClick={() => showModal(project)}>{project.name}</a>
                         </li>
                       ))}
                     </ul>
@@ -109,14 +109,22 @@ const renderCompany = (index, company, allProjects) => {
 };
 
 const Experience = ({ companies, projects }) => {
+  const [selectedProject, setSelectedProject] = useState(null);
+  const showModal = project => {
+    setSelectedProject(decorateProject(project, companies));
+  };
+
   return (
     <Layout>
       <SEO title="Experience" keywords={['experience']} />
       <div className="experience">
         <ul className="timeline">
-          {companies.map((company, index) => renderCompany(index, company, projects))}
+          {companies.map((company, index) => renderCompany(index, company, projects, showModal))}
         </ul>
       </div>
+      {selectedProject && (
+        <ProjectModal project={selectedProject} closeModal={() => setSelectedProject(null)} />
+      )}
     </Layout>
   );
 };
@@ -156,9 +164,12 @@ const query = graphql`
           description_entries
         }
         projects {
-          company_id
           name
+          company_id
+          language
+          links
           technologies
+          description_entries
         }
       }
     }
