@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import javascriptIcon from '../images/icons/javascript.svg';
-import rubyIcon from '../images/icons/ruby.svg';
-import javaIcon from '../images/icons/java.svg';
+import javascriptIcon from '../assets/images/icons/javascript.svg';
+import rubyIcon from '../assets/images/icons/ruby.svg';
+import javaIcon from '../assets/images/icons/java.svg';
 
 const ICON_BY_LANGUAGE = {
   ruby: rubyIcon,

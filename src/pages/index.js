@@ -1,13 +1,12 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import './index.scss';
 import React, { useState } from 'react';
 
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import ContactModal from '../components/contactModal';
-import emailIcon from '../images/icons/email.svg';
+import emailIcon from '../assets/images/icons/email.svg';
 
 const IndexPage = () => {
   const [showModal, setShowModal] = useState(false);

@@ -6,11 +6,11 @@ import React, { Fragment, useState } from 'react';
 import { Link } from 'gatsby';
 
 import ContactModal from './contactModal';
-import emailIcon from '../images/icons/email.svg';
-import githubIcon from '../images/icons/github.svg';
-import linkedInIcon from '../images/icons/linkedin.svg';
-import twitterIcon from '../images/icons/twitter.svg';
-import profileImage from '../images/profile.png';
+import emailIcon from '../assets/images/icons/email.svg';
+import githubIcon from '../assets/images/icons/github.svg';
+import linkedInIcon from '../assets/images/icons/linkedin.svg';
+import twitterIcon from '../assets/images/icons/twitter.svg';
+import profileImage from '../assets/images/profile.png';
 
 const Header = ({ name, title }) => {
   const [showModal, setShowModal] = useState(false);

@@ -1,7 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
-import './projects.scss';
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
@@ -11,10 +10,10 @@ import SEO from '../components/seo';
 import ProjectModal from '../components/projectModal';
 import { bgColorByLanguage, decorateProject, filterProjects } from '../util';
 
-import searchIcon from '../images/icons/search.svg';
-import javascriptIcon from '../images/icons/javascript.svg';
-import rubyIcon from '../images/icons/ruby.svg';
-import javaIcon from '../images/icons/java.svg';
+import searchIcon from '../assets/images/icons/search.svg';
+import javascriptIcon from '../assets/images/icons/javascript.svg';
+import rubyIcon from '../assets/images/icons/ruby.svg';
+import javaIcon from '../assets/images/icons/java.svg';
 
 const Projects = ({ projects, companies, location }) => {
   const [selectedLanguage, setSelectedLanguage] = useState(null);
