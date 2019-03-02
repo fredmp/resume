@@ -8,7 +8,6 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import ContactModal from '../components/contactModal';
 import emailIcon from '../images/icons/email.svg';
-import calendarIcon from '../images/icons/calendar.svg';
 
 const IndexPage = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,10 +31,6 @@ const IndexPage = () => {
           <a className="navbar-item social button is-primary" onClick={() => setShowModal(true)}>
             <img src={emailIcon} alt="Contact" width="40" height="30" />
             <span>Contact me</span>
-          </a>
-          <a href="/#" className="navbar-item social button is-primary">
-            <img src={calendarIcon} alt="Schedule" width="40" height="30" />
-            <span>Schedule a call</span>
           </a>
         </div>
       </div>
