@@ -95,7 +95,7 @@ const Projects = ({ projects, companies, location }) => {
           </p>
         </div>
 
-        <div className={`dropdown ${selectingCompany ? 'is-active' : ''}`}>
+        <div className={`choose-company dropdown ${selectingCompany ? 'is-active' : ''}`}>
           <div className="dropdown-trigger">
             <button
               type="button"
