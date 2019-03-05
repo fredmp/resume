@@ -20,6 +20,7 @@ const Projects = ({ projects, companies, location }) => {
   const [selectingCompany, setSelectingCompany] = useState(false);
   const [selectedCompany, setSelectedCompany] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [focusedProject, setFocusedProject] = useState(null);
   const [search, setSearch] = useState('');
 
   const filteredProjects = filterProjects(selectedCompany, projects, search, selectedLanguage);
@@ -135,7 +136,13 @@ const Projects = ({ projects, companies, location }) => {
         {selectedProject && <ProjectModal project={selectedProject} closeModal={closeModal} />}
         <div className="projects">
           {filteredProjects.map(project => (
-            <div className="project" key={project.name} onClick={() => showModal(project)}>
+            <div
+              className={`project ${focusedProject === project ? 'highlight-box' : ''}`}
+              key={project.name}
+              onClick={() => showModal(project)}
+              onMouseEnter={() => setFocusedProject(project)}
+              onMouseLeave={() => setFocusedProject(null)}
+            >
               <h3 className={bgColorByLanguage(project.language)}>{project.name}</h3>
               <div className="content">
                 {project.description_entries.map(description => (

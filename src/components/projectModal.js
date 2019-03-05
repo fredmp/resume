@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import javascriptIcon from '../assets/images/icons/javascript.svg';
@@ -14,6 +14,9 @@ const ICON_BY_LANGUAGE = {
 const ProjectModal = ({ project, closeModal }) => {
   const language = ['javascript', 'ruby', 'java'].includes(project.language) && project.language;
   const icon = ICON_BY_LANGUAGE[language];
+
+  const [focusedTechnology, setFocusedTechnology] = useState(null);
+
   return (
     <div className="modal is-active">
       <div className="modal-background" />
@@ -72,7 +75,14 @@ const ProjectModal = ({ project, closeModal }) => {
               <div className="tags">
                 <div className="tags-inner">
                   {project.technologies.map(technology => (
-                    <span key={technology} className="tag is-medium box">
+                    <span
+                      key={technology}
+                      className={`tag is-medium box ${
+                        focusedTechnology === technology ? 'highlight-tag' : ''
+                      }`}
+                      onMouseEnter={() => setFocusedTechnology(technology)}
+                      onMouseLeave={() => setFocusedTechnology(null)}
+                    >
                       {technology}
                     </span>
                   ))}

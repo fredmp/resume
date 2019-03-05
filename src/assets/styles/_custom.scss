@@ -133,5 +133,11 @@ body {
 }
 .tags-inner {
   margin-left: 1px;
-  padding-right: 1px;
+  padding-right: 4px;
+}
+.highlight-box {
+  box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.175) !important;
+}
+.highlight-tag {
+  box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.175) !important;
 }
