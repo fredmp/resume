@@ -11,7 +11,6 @@ const formValues = {
 const ContactModal = ({ closeModal }) => {
   const formRef = useRef();
   const [validForm, setValidForm] = useState(false);
-  const [showEmailError, setShowEmailError] = useState(false);
   const [sent, setSent] = useState(false);
 
   const onChangeInput = (field, value) => {
@@ -19,14 +18,11 @@ const ContactModal = ({ closeModal }) => {
     const { name, email, message } = formValues;
     const invalidEmail = !emailRegex.test(formValues.email);
     setValidForm(name.length > 3 && email.length > 3 && message.length > 3 && !invalidEmail);
-    setShowEmailError(invalidEmail && email.length > 0);
   };
+
   const onSubmit = () => {
     setSent(true);
     formRef.current.submit();
-    setTimeout(() => {
-      closeModal();
-    }, 2500);
   };
 
   return (
@@ -41,15 +37,13 @@ const ContactModal = ({ closeModal }) => {
           {sent ? (
             <div>
               <center>
-                <h2 style={{ marginBottom: '18px' }}>
-                  Email is being sent... I&apos;ll reply soon. Thanks!
-                </h2>
+                <h2 style={{ marginBottom: '18px' }}>Email is being sent...</h2>
               </center>
             </div>
           ) : (
             <form method="POST" action="https://formspree.io/martinsporto@gmail.com" ref={formRef}>
               <input type="hidden" name="_subject" value="Contact" />
-              <input type="hidden" name="_next" value="//" />
+              <input type="hidden" name="_next" value="//?contact=true" />
               <div className="field">
                 <label htmlFor="name" className="label">
                   Name
@@ -71,13 +65,12 @@ const ContactModal = ({ closeModal }) => {
                 <div className="control">
                   <input
                     name="_replyto"
-                    className={`input ${showEmailError ? 'is-danger' : ''}`}
+                    className="input"
                     type="email"
                     placeholder="Your email"
                     onChange={e => onChangeInput('email', e.target.value)}
                   />
                 </div>
-                {showEmailError && <p className="help is-danger">This email is invalid</p>}
               </div>
               <div className="field">
                 <label htmlFor="message" className="label">
@@ -98,14 +91,13 @@ const ContactModal = ({ closeModal }) => {
         <footer className="modal-card-foot">
           {!sent && (
             <Fragment>
-              <button
-                type="button"
+              <input
+                type="submit"
+                value="Send"
                 className="button is-primary"
                 disabled={!validForm}
                 onClick={onSubmit}
-              >
-                Send
-              </button>
+              />
               <button type="button" className="button" onClick={closeModal}>
                 Cancel
               </button>
