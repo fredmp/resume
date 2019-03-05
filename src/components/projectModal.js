@@ -41,9 +41,12 @@ const ProjectModal = ({ project, closeModal }) => {
                 <div>
                   <span className="has-text-weight-bold">My contributions:</span>
                   <br />
-                  {project.contributions.map(contribution => (
-                    <p key={contribution}>{contribution}</p>
-                  ))}
+                  <br />
+                  <ul>
+                    {project.contributions.map(contribution => (
+                      <li key={contribution}>{contribution}</li>
+                    ))}
+                  </ul>
                 </div>
               )}
               {project.learning && (
@@ -96,6 +99,7 @@ ProjectModal.propTypes = {
     language: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.string),
     technologies: PropTypes.arrayOf(PropTypes.string),
+    contributions: PropTypes.arrayOf(PropTypes.string),
     description_entries: PropTypes.arrayOf(PropTypes.string),
     company: PropTypes.shape({
       id: PropTypes.string,

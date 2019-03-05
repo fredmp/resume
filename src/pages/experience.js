@@ -168,6 +168,7 @@ const query = graphql`
           language
           links
           technologies
+          contributions
           description_entries
         }
       }
