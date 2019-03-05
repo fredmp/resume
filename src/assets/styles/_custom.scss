@@ -126,7 +126,8 @@ body {
   border-bottom-color: #dbdbdb;
   border-bottom-style: solid;
   border-bottom-width: 1px;
-  a:hover {
+  a:hover,
+  a.is-active {
     background-color: whitesmoke !important;
   }
 }
