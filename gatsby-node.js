@@ -4,14 +4,4 @@
  * See: https://www.gatsbyjs.org/docs/node-apis/
  */
 
-const path = require('path');
-
-exports.onCreateWebpackConfig = ({ actions }) => {
-  actions.setWebpackConfig({
-    resolve: {
-      alias: {
-        '_variables.sass': path.resolve(__dirname, 'src/_variables.sass'),
-      },
-    },
-  });
-};
+// You can delete this file if you're not using it
