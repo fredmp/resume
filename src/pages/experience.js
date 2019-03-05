@@ -142,9 +142,14 @@ Experience.propTypes = {
   ).isRequired,
   projects: PropTypes.arrayOf(
     PropTypes.shape({
-      company_id: PropTypes.string,
       name: PropTypes.string,
+      company_id: PropTypes.string,
+      language: PropTypes.string,
+      period: PropTypes.string,
+      links: PropTypes.arrayOf(PropTypes.string),
       technologies: PropTypes.arrayOf(PropTypes.string),
+      contributions: PropTypes.arrayOf(PropTypes.string),
+      description_entries: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
 };
@@ -167,6 +172,7 @@ const query = graphql`
           company_id
           language
           links
+          period
           technologies
           contributions
           description_entries

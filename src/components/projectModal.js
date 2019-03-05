@@ -26,6 +26,11 @@ const ProjectModal = ({ project, closeModal }) => {
           <button type="button" className="delete" aria-label="close" onClick={closeModal} />
         </header>
         <section className="modal-card-body">
+          {project.inProgress && (
+            <span className="tag is-medium box" style={{ float: 'right' }}>
+              In progress
+            </span>
+          )}
           <div className="project-modal">
             <div className="content">
               <div>
@@ -107,10 +112,14 @@ ProjectModal.propTypes = {
     name: PropTypes.string,
     company_id: PropTypes.string,
     language: PropTypes.string,
+    period: PropTypes.string,
+    startedAt: PropTypes.string,
+    endedAt: PropTypes.string,
     links: PropTypes.arrayOf(PropTypes.string),
     technologies: PropTypes.arrayOf(PropTypes.string),
     contributions: PropTypes.arrayOf(PropTypes.string),
     description_entries: PropTypes.arrayOf(PropTypes.string),
+    inProgress: PropTypes.bool,
     company: PropTypes.shape({
       id: PropTypes.string,
       name: PropTypes.string,

@@ -19,11 +19,19 @@ export const textColorByLanguage = language =>
 export const findCompany = (companyId, companies) =>
   companies.find(company => company.id === companyId);
 
+export const extractPeriodInfo = project => {
+  const period = (project.period || '_').split('_');
+  const startedAt = period[0];
+  const endedAt = period[1];
+  const inProgress = endedAt.length === 0;
+  return { startedAt, endedAt, inProgress };
+};
+
 export const decorateProject = (project, companies) => {
   const company = findCompany(project.company_id, companies);
   const bgColor = bgColorByLanguage(project.language);
   const textColor = textColorByLanguage(project.language);
-  return { ...project, company, bgColor, textColor };
+  return { ...project, company, bgColor, textColor, ...extractPeriodInfo(project) };
 };
 
 export const filterProjects = (company, projects, search, language) => {

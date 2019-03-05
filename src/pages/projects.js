@@ -186,8 +186,10 @@ Projects.propTypes = {
       name: PropTypes.string,
       company_id: PropTypes.string,
       language: PropTypes.string,
+      period: PropTypes.string,
       links: PropTypes.arrayOf(PropTypes.string),
       technologies: PropTypes.arrayOf(PropTypes.string),
+      contributions: PropTypes.arrayOf(PropTypes.string),
       description_entries: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
@@ -214,6 +216,7 @@ const query = graphql`
           name
           company_id
           language
+          period
           links
           technologies
           contributions
