@@ -146,7 +146,7 @@ const Projects = ({ projects, companies, location }) => {
               <div className="tags">
                 <div className="tag-content">
                   {project.technologies.map(technology => (
-                    <span key={technology} className="tag is-medium">
+                    <span key={technology} className="tag is-medium box">
                       {technology}
                     </span>
                   ))}

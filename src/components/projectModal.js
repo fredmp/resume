@@ -70,9 +70,9 @@ const ProjectModal = ({ project, closeModal }) => {
               )}
               <hr />
               <div className="tags">
-                <div>
+                <div className="tags-inner">
                   {project.technologies.map(technology => (
-                    <span key={technology} className="tag is-medium">
+                    <span key={technology} className="tag is-medium box">
                       {technology}
                     </span>
                   ))}
