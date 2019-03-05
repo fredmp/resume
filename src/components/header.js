@@ -10,6 +10,7 @@ import emailIcon from '../assets/images/icons/email.svg';
 import githubIcon from '../assets/images/icons/github.svg';
 import linkedInIcon from '../assets/images/icons/linkedin.svg';
 import twitterIcon from '../assets/images/icons/twitter.svg';
+import downloadIcon from '../assets/images/icons/download.svg';
 import profileImage from '../assets/images/profile.png';
 
 const Header = ({ name, title }) => {
@@ -24,9 +25,14 @@ const Header = ({ name, title }) => {
             <h2 className="subtitle">{title}</h2>
             <img src={profileImage} alt="Profile" />
             <div className="contact-links">
-              <a className="navbar-item social" onClick={() => setShowModal(true)}>
-                <img src={emailIcon} alt="Contact" width="40" height="30" />
-                <span>Contact me</span>
+              <a
+                className="navbar-item social"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.linkedin.com/in/fredmp"
+              >
+                <img src={linkedInIcon} alt="Linkedin" width="40" height="30" />
+                <span>Linkedin</span>
               </a>
               <a
                 className="navbar-item social"
@@ -41,19 +47,19 @@ const Header = ({ name, title }) => {
                 className="navbar-item social"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://www.linkedin.com/in/fredmp"
+                href="https://twitter.com/fredmp"
               >
-                <img src={linkedInIcon} alt="Linkedin" width="40" height="30" />
-                <span>Linkedin</span>
+                <img src={twitterIcon} alt="Twitter" width="40" height="30" />
+                <span>Twitter</span>
               </a>
               <a
                 className="navbar-item social"
                 target="_blank"
                 rel="noopener noreferrer"
-                href="https://twitter.com/fredmp"
+                href="http://lagosvagas.com.br/resume-frederico.pdf"
               >
-                <img src={twitterIcon} alt="Twitter" width="40" height="30" />
-                <span>Twitter</span>
+                <img src={downloadIcon} alt="Resume PDF" width="40" height="30" />
+                <span>Resume</span>
               </a>
             </div>
           </div>
