@@ -13,7 +13,7 @@ const IndexPage = () => {
 
   return (
     <Layout>
-      <SEO title="Home" keywords={['portfolio', 'resume', 'ruby', 'javascript', 'react']} />
+      <SEO title="About me" keywords={['portfolio', 'resume', 'ruby', 'javascript', 'react']} />
       <div className="main-text">
         <div className="text-content has-text-centered">
           <p>

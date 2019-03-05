@@ -16,7 +16,7 @@ function SEO({ description, lang, meta, keywords, title }) {
       query {
         site {
           siteMetadata {
-            title
+            siteTitle
             description
             author
           }
@@ -33,7 +33,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         lang,
       }}
       title={title}
-      titleTemplate={`%s | ${site.siteMetadata.title}`}
+      titleTemplate={`${site.siteMetadata.siteTitle} - %s`}
       meta={[
         {
           name: `description`,
@@ -41,7 +41,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           property: `og:title`,
-          content: title,
+          content: site.siteMetadata.siteTitle,
         },
         {
           property: `og:description`,
@@ -61,7 +61,7 @@ function SEO({ description, lang, meta, keywords, title }) {
         },
         {
           name: `twitter:title`,
-          content: title,
+          content: site.siteMetadata.siteTitle,
         },
         {
           name: `twitter:description`,

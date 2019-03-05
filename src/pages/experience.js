@@ -34,7 +34,7 @@ const renderCompany = (index, company, allProjects, showModal) => {
       <div className="timeline-panel">
         <div className="timeline-heading">
           <h2 className="timeline-company">{company.name}</h2>
-          {company.team && <span>{`(${company.team})`}</span>}
+          {company.team && <span>{` (${company.team})`}</span>}
           {' - '}
           <span className="timeline-position">{company.position}</span>
           <p className="timeline-period">
