@@ -24,7 +24,11 @@ export const extractPeriodInfo = project => {
   const startedAt = period[0];
   const endedAt = period[1];
   const inProgress = endedAt.length === 0;
-  return { startedAt, endedAt, inProgress };
+  return {
+    inProgress,
+    startedAt: new Date(startedAt),
+    endedAt: endedAt ? new Date(endedAt) : new Date(),
+  };
 };
 
 export const decorateProject = (project, companies) => {
@@ -66,5 +70,9 @@ export const filterProjects = (company, projects, search, language) => {
         (language === 'other'
           ? !languages.includes(project.language)
           : project.language === language),
+    )
+    .map(project => ({ ...project, ...extractPeriodInfo(project) }))
+    .sort((a, b) =>
+      a.inProgress && b.inProgress ? a.name.localeCompare(b.name) : b.endedAt - a.endedAt,
     );
 };

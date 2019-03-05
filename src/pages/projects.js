@@ -137,7 +137,9 @@ const Projects = ({ projects, companies, location }) => {
         <div className="projects">
           {filteredProjects.map(project => (
             <div
-              className={`project ${focusedProject === project ? 'highlight-box' : ''}`}
+              className={`project ${
+                (focusedProject || {}).name === project.name ? 'highlight-box' : ''
+              }`}
               key={project.name}
               onClick={() => showModal(project)}
               onMouseEnter={() => setFocusedProject(project)}
