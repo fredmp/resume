@@ -141,3 +141,70 @@ body {
 .highlight-tag {
   box-shadow: 3px 3px 4px rgba(0, 0, 0, 0.175) !important;
 }
+.menu-icon {
+  display: none;
+}
+@media (max-width: 768px) {
+  .contact-links a span {
+    display: none;
+  }
+  .tabs.main-tabs {
+    margin-bottom: 15px;
+    a {
+      display: none;
+    }
+  }
+  .search-bar,
+  .choose-company {
+    width: 90%;
+    div > button {
+      width: 100%;
+    }
+  }
+  .title,
+  .subtitle {
+    font-size: 20px;
+  }
+  .hero-body > .container > img {
+    display: none;
+  }
+  .filters p {
+    justify-content: center;
+    a {
+      margin: 5px;
+      padding: 0;
+    }
+  }
+  .modal {
+    z-index: 9999;
+  }
+  .menu-icon {
+    display: block;
+    position: absolute;
+    z-index: 9998;
+    top: 0;
+    right: 0;
+    margin-right: 4px;
+    width: 45px;
+    height: 45px;
+    img {
+      margin-bottom: 0;
+    }
+  }
+  .menu-mobile {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    a {
+      display: table;
+      font-size: 18px;
+      font-weight: bold;
+      margin: auto;
+      min-width: 50%;
+      text-align: center;
+      border-bottom: 1px solid;
+    }
+    a:last-child {
+      border-bottom: none;
+    }
+  }
+}
