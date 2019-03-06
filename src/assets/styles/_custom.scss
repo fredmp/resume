@@ -144,6 +144,9 @@ body {
 .menu-icon {
   display: none;
 }
+.modal-card-title {
+  max-width: 100%;
+}
 @media (max-width: 768px) {
   .contact-links a span {
     display: none;
