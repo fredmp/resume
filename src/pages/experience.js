@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
@@ -50,8 +47,11 @@ const renderCompany = (index, company, allProjects, showModal) => {
             </small>
           </p>
           <div
+            role="button"
+            tabIndex={0}
             className={arrowClasses(showContent)}
             onClick={() => setShowContent(prevState => !prevState)}
+            onKeyPress={() => setShowContent(prevState => !prevState)}
           />
         </div>
         {showContent && (
@@ -59,17 +59,32 @@ const renderCompany = (index, company, allProjects, showModal) => {
             <div className="tabs is-boxed">
               <ul>
                 <li className={isTabSelected(selectedTab, 'description') ? 'is-active' : ''}>
-                  <a onClick={() => setSelectedTab('description')}>
+                  <a
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedTab('description')}
+                    onKeyPress={() => setSelectedTab('description')}
+                  >
                     <span>Description</span>
                   </a>
                 </li>
                 <li className={isTabSelected(selectedTab, 'projects') ? 'is-active' : ''}>
-                  <a onClick={() => setSelectedTab('projects')}>
+                  <a
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedTab('projects')}
+                    onKeyPress={() => setSelectedTab('projects')}
+                  >
                     <span>Projects</span>
                   </a>
                 </li>
                 <li className={isTabSelected(selectedTab, 'technologies') ? 'is-active' : ''}>
-                  <a onClick={() => setSelectedTab('technologies')}>
+                  <a
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedTab('technologies')}
+                    onKeyPress={() => setSelectedTab('technologies')}
+                  >
                     <span>Technologies</span>
                   </a>
                 </li>
@@ -82,7 +97,14 @@ const renderCompany = (index, company, allProjects, showModal) => {
                     <ul className="projects">
                       {projects.map(project => (
                         <li key={`${project.name}-${company.id}`}>
-                          <a onClick={() => showModal(project)}>{project.name}</a>
+                          <a
+                            role="button"
+                            tabIndex={0}
+                            onClick={() => showModal(project)}
+                            onKeyPress={() => showModal(project)}
+                          >
+                            {project.name}
+                          </a>
                         </li>
                       ))}
                     </ul>

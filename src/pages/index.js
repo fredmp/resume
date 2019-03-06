@@ -1,7 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect, Fragment } from 'react';
 
 import Layout from '../components/layout';
@@ -47,8 +44,11 @@ const IndexPage = ({ location }) => {
             <h4>Get in touch</h4>
             <div className="contact-links">
               <a
+                role="button"
+                tabIndex={0}
                 className="navbar-item social button is-primary"
                 onClick={() => setShowModal(true)}
+                onKeyPress={() => setShowModal(true)}
               >
                 <img src={emailIcon} alt="Contact" width="40" height="30" />
                 <span>Contact me</span>

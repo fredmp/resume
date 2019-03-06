@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import javascriptIcon from '../assets/images/icons/javascript.svg';
@@ -16,6 +16,11 @@ const ProjectModal = ({ project, closeModal }) => {
   const icon = ICON_BY_LANGUAGE[language];
 
   const [focusedTechnology, setFocusedTechnology] = useState(null);
+  const closeButtonRef = useRef();
+
+  useEffect(() => {
+    closeButtonRef.current.focus();
+  }, []);
 
   return (
     <div className="modal is-active">
@@ -23,7 +28,13 @@ const ProjectModal = ({ project, closeModal }) => {
       <div className="modal-card">
         <header className={`modal-card-head ${project.bgColor}`}>
           <p className={`modal-card-title ${project.textColor}`}>{project.name}</p>
-          <button type="button" className="delete" aria-label="close" onClick={closeModal} />
+          <button
+            type="button"
+            className="delete"
+            aria-label="close"
+            onClick={closeModal}
+            ref={closeButtonRef}
+          />
         </header>
         <section className="modal-card-body">
           {project.inProgress && (

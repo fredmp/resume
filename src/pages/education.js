@@ -1,5 +1,3 @@
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import PropTypes from 'prop-types';
 import React, { useState } from 'react';
 import { StaticQuery, graphql } from 'gatsby';
@@ -55,8 +53,13 @@ const Education = ({ education }) => {
       <div className="education">
         <div className="universities">
           <div
+            role="button"
+            tabIndex={0}
             className={arrowClasses(showEducation)}
-            onClick={() => setShowEducation(prevState => !prevState)}
+            onClick={() => {
+              setShowEducation(prevState => !prevState);
+            }}
+            onKeyPress={() => setShowEducation(prevState => !prevState)}
           />
           <h3>Formal Education</h3>
           {showEducation && (
@@ -67,8 +70,11 @@ const Education = ({ education }) => {
         </div>
         <div className="books">
           <div
+            role="button"
+            tabIndex={0}
             className={arrowClasses(showBooks)}
             onClick={() => setShowBooks(prevState => !prevState)}
+            onKeyPress={() => setShowBooks(prevState => !prevState)}
           />
           <h3>Favorite Technical Books</h3>
           {showBooks && (
@@ -79,8 +85,11 @@ const Education = ({ education }) => {
         </div>
         <div className="courses">
           <div
+            role="button"
+            tabIndex={0}
             className={arrowClasses(showCourses)}
             onClick={() => setShowCourses(prevState => !prevState)}
+            onKeyPress={() => setShowCourses(prevState => !prevState)}
           />
           <h3>
             Recent Courses

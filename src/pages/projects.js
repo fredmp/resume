@@ -1,6 +1,3 @@
-/* eslint-disable jsx-a11y/anchor-is-valid */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
@@ -53,13 +50,19 @@ const Projects = ({ projects, companies, location }) => {
         <div className="filters">
           <p className="buttons">
             <a
+              role="button"
+              tabIndex={0}
               onClick={() => setLanguage('ruby')}
+              onKeyPress={() => setLanguage('ruby')}
               className={`button is-danger ${selectedLanguage === 'ruby' ? '' : 'is-outlined'}`}
             >
               <span>Ruby</span>
             </a>
             <a
+              role="button"
+              tabIndex={0}
               onClick={() => setLanguage('javascript')}
+              onKeyPress={() => setLanguage('javascript')}
               className={`button is-info ${
                 selectedLanguage === 'javascript' ? '' : 'is-outlined has-text-grey-dark'
               }`}
@@ -67,13 +70,19 @@ const Projects = ({ projects, companies, location }) => {
               <span>Javascript</span>
             </a>
             <a
+              role="button"
+              tabIndex={0}
               onClick={() => setLanguage('java')}
+              onKeyPress={() => setLanguage('java')}
               className={`button is-success ${selectedLanguage === 'java' ? '' : 'is-outlined'}`}
             >
               <span>Java</span>
             </a>
             <a
+              role="button"
+              tabIndex={0}
               onClick={() => setLanguage('other')}
+              onKeyPress={() => setLanguage('other')}
               className={`button is-primary ${selectedLanguage === 'other' ? '' : 'is-outlined'}`}
             >
               <span>Other</span>
@@ -113,7 +122,10 @@ const Projects = ({ projects, companies, location }) => {
           <div className="dropdown-menu" id="dropdown-menu" role="menu">
             <div className="dropdown-content">
               <a
+                role="button"
+                tabIndex={0}
                 onClick={() => selectCompany(null)}
+                onKeyPress={() => selectCompany(null)}
                 key={-1}
                 className={`dropdown-item ${selectedCompany === null ? 'is-active' : ''}`}
               >
@@ -121,7 +133,10 @@ const Projects = ({ projects, companies, location }) => {
               </a>
               {companies.map(company => (
                 <a
+                  role="button"
+                  tabIndex={0}
                   onClick={() => selectCompany(company)}
+                  onKeyPress={() => selectCompany(company)}
                   key={`${company.id}-${company.position}`}
                   className={`dropdown-item ${selectedCompany === company.name ? 'is-active' : ''}`}
                 >
@@ -137,11 +152,14 @@ const Projects = ({ projects, companies, location }) => {
         <div className="projects">
           {filteredProjects.map(project => (
             <div
+              role="button"
+              tabIndex={0}
               className={`project ${
                 (focusedProject || {}).name === project.name ? 'highlight-box' : ''
               }`}
               key={project.name}
               onClick={() => showModal(project)}
+              onKeyPress={() => showModal(project)}
               onMouseEnter={() => setFocusedProject(project)}
               onMouseLeave={() => setFocusedProject(null)}
             >
