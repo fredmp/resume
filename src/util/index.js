@@ -19,8 +19,8 @@ export const textColorByLanguage = language =>
 export const findCompany = (companyId, companies) =>
   companies.find(company => company.id === companyId);
 
-export const extractPeriodInfo = project => {
-  const period = (project.period || '_').split('_');
+export const extractPeriodInfo = target => {
+  const period = (target.period || '_').split('_');
   const startedAt = period[0];
   const endedAt = period[1];
   const inProgress = endedAt.length === 0;
@@ -29,6 +29,39 @@ export const extractPeriodInfo = project => {
     startedAt: new Date(startedAt),
     endedAt: endedAt ? new Date(endedAt) : new Date(),
   };
+};
+
+const extractPeriodText = (startedAt, endedAt, inProgress) => {
+  const DATE_FORMAT_OPTIONS = { year: 'numeric', month: 'long', timeZone: 'UTC' };
+  const MILISECONDS_TO_DAYS = 1000 * 60 * 60 * 24 * 30;
+  const endString = endedAt.toLocaleDateString('en-US', DATE_FORMAT_OPTIONS);
+  const startString = startedAt.toLocaleDateString('en-US', DATE_FORMAT_OPTIONS);
+  const diff = endedAt - startedAt;
+  let year = Math.floor(diff / MILISECONDS_TO_DAYS / 12);
+  let month = Math.floor((diff / MILISECONDS_TO_DAYS) % 12);
+  if (year < 1 && month < 1) {
+    year = 0;
+    month = 1;
+  }
+  year = year >= 1 ? `${year} year${year > 1 ? 's' : ''}` : null;
+  month = month >= 1 ? `${month} month${month > 1 ? 's' : ''}` : null;
+  const connector = year && month ? ' and ' : '';
+
+  return `${startString} - ${inProgress ? 'present' : endString} (${`${year ||
+    ''}${connector}${month || ''}`})`;
+};
+
+export const companyPeriod = (company, projects) => {
+  if (company.period) {
+    const { startedAt, endedAt, inProgress } = extractPeriodInfo(company);
+    return extractPeriodText(startedAt, endedAt, inProgress);
+  }
+  if (projects && projects.length > 0) {
+    const { endedAt, inProgress } = projects[0];
+    const { startedAt } = projects[projects.length - 1];
+    return extractPeriodText(startedAt, endedAt, inProgress);
+  }
+  return '';
 };
 
 export const decorateProject = (project, companies) => {
@@ -43,7 +76,7 @@ export const filterProjects = (company, projects, search, language) => {
     (value || '').toLowerCase().includes((search || '').toLowerCase());
   const projectNames = [];
   const languages = ['javascript', 'ruby', 'java'];
-  if (search.length > 1) {
+  if (search && search.length > 1) {
     projects.forEach(project => {
       if (
         searchIncludes(project.name) ||

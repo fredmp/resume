@@ -13,6 +13,6 @@ module.exports = [
     position: 'Senior Full Stack Developer (Ruby and Javascript)',
     period: 'June 2018 - present',
     description_entries: ['Awesome company'],
-    listed: true,
+    unlisted: true,
   },
 ];

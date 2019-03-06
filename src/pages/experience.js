@@ -5,7 +5,7 @@ import { StaticQuery, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import ProjectModal from '../components/projectModal';
-import { decorateProject } from '../util';
+import { decorateProject, filterProjects, companyPeriod } from '../util';
 
 const arrowClasses = state => `arrow arrow-down ${state && 'active'}`;
 
@@ -17,7 +17,8 @@ const renderCompany = (index, company, allProjects, showModal) => {
   const [focusedCompany, setFocusedCompany] = useState(null);
   const [focusedTechnology, setFocusedTechnology] = useState(null);
 
-  const projects = allProjects.filter(project => project.company_id === company.id);
+  const projects = filterProjects(company, allProjects, null, null);
+
   const technologies = projects
     .reduce((acc, project) => [...acc, ...project.technologies], [])
     .filter((value, i, self) => self.indexOf(value) === i);
@@ -43,7 +44,7 @@ const renderCompany = (index, company, allProjects, showModal) => {
           <p className="timeline-period">
             <small className="text-muted">
               <i className="glyphicon glyphicon-time" />
-              {company.period}
+              {companyPeriod(company, projects)}
             </small>
           </p>
           <div
@@ -153,7 +154,9 @@ const Experience = ({ companies, projects }) => {
       <SEO title="Experience" keywords={['experience']} />
       <div className="experience">
         <ul className="timeline">
-          {companies.map((company, index) => renderCompany(index, company, projects, showModal))}
+          {companies
+            .filter(company => !company.unlisted)
+            .map((company, index) => renderCompany(index, company, projects, showModal))}
         </ul>
       </div>
       {selectedProject && (
@@ -171,7 +174,7 @@ Experience.propTypes = {
       position: PropTypes.string,
       period: PropTypes.string,
       team: PropTypes.string,
-      listed: PropTypes.boolean,
+      unlisted: PropTypes.boolean,
       description_entries: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
@@ -199,7 +202,7 @@ const query = graphql`
           position
           period
           team
-          listed
+          unlisted
           description_entries
         }
         projects {
