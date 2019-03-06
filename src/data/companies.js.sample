@@ -1,0 +1,18 @@
+module.exports = [
+  {
+    id: 'company_1',
+    name: 'Company 1',
+    position: 'Full Stack Developer',
+    period: 'November 2016 - present',
+    description_entries: ['Nice company'],
+    team: 'A team',
+  },
+  {
+    id: 'company_2',
+    name: 'Company 2',
+    position: 'Senior Full Stack Developer (Ruby and Javascript)',
+    period: 'June 2018 - present',
+    description_entries: ['Awesome company'],
+    listed: true,
+  },
+];

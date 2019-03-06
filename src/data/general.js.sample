@@ -1,0 +1,7 @@
+module.exports = {
+  siteTitle: 'Resume',
+  name: 'John Doe',
+  title: 'Software Developer',
+  description: 'My resume',
+  author: 'Mr John Doe',
+};

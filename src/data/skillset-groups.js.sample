@@ -1,0 +1,73 @@
+module.exports = [
+  {
+    name: 'Languages',
+    skills: [
+      { name: 'Ruby', rate: 5 },
+      { name: 'Javascript', rate: 4 },
+      { name: 'Java', rate: 4 },
+      { name: 'HTML', rate: 4 },
+      { name: 'CSS', rate: 4 },
+    ],
+  },
+  {
+    name: 'Web Frameworks',
+    skills: [
+      { name: 'Rails', rate: 5 },
+      { name: 'Node', rate: 4 },
+      { name: 'Express', rate: 4 },
+      { name: 'Vue', rate: 4 },
+      { name: 'Nuxt', rate: 4 },
+      { name: 'Electron', rate: 2 },
+    ],
+  },
+  {
+    name: 'Libraries and Tools',
+    skills: [
+      { name: 'React', rate: 4 },
+      { name: 'Redux', rate: 4 },
+      { name: 'GraphQL', rate: 2 },
+      { name: 'Git', rate: 4 },
+      { name: 'JQuery', rate: 4 },
+      { name: 'Slim', rate: 5 },
+    ],
+  },
+  {
+    name: 'Testing Tools',
+    skills: [
+      { name: 'Rspec', rate: 5 },
+      { name: 'Minitest', rate: 4 },
+      { name: 'Jest', rate: 4 },
+      { name: 'Mocha', rate: 4 },
+      { name: 'Capybara', rate: 4 },
+    ],
+  },
+  {
+    name: 'CSS Frameworks',
+    skills: [
+      { name: 'Bulma', rate: 5 },
+      { name: 'Bootstrap', rate: 4 },
+      { name: 'Semantic UI', rate: 4 },
+    ],
+  },
+  {
+    name: 'Server Tools and Enviroments',
+    skills: [
+      { name: 'Nginx', rate: 4 },
+      { name: 'Heroku', rate: 4 },
+      { name: 'AWS (EC2)', rate: 4 },
+      { name: 'Capistrano', rate: 4 },
+    ],
+  },
+  {
+    name: 'Process',
+    skills: [{ name: 'TDD', rate: 4 }, { name: 'Scrum', rate: 4 }, { name: 'Kanban', rate: 4 }],
+  },
+  {
+    name: 'Databases and Tools',
+    skills: [
+      { name: 'PostgreSQL', rate: 4 },
+      { name: 'MySQL', rate: 4 },
+      { name: 'MongoDB', rate: 4 },
+    ],
+  },
+];
