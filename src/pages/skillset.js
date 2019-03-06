@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { StaticQuery, graphql } from 'gatsby';
 
@@ -6,12 +6,19 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 
 const Skillset = ({ skillsetGroups }) => {
+  const [focusedGroup, setFocusedGroup] = useState(null);
+
   return (
     <Layout>
       <SEO title="Skillsets" keywords={['skills']} />
       <div className="skillset_groups">
         {skillsetGroups.map(group => (
-          <div className="skillset" key={group.name}>
+          <div
+            className={`skillset ${focusedGroup === group ? 'highlight-box' : ''}`}
+            onMouseEnter={() => setFocusedGroup(group)}
+            onMouseLeave={() => setFocusedGroup(null)}
+            key={group.name}
+          >
             <h3>{group.name}</h3>
             <ul>
               {group.skills.map(skill => (

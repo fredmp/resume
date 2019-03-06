@@ -17,6 +17,8 @@ const isTabSelected = (tab, name) => tab === name;
 const renderCompany = (index, company, allProjects, showModal) => {
   const [showContent, setShowContent] = useState(true);
   const [selectedTab, setSelectedTab] = useState('description');
+  const [focusedCompany, setFocusedCompany] = useState(null);
+  const [focusedTechnology, setFocusedTechnology] = useState(null);
 
   const projects = allProjects.filter(project => project.company_id === company.id);
   const technologies = projects
@@ -31,7 +33,11 @@ const renderCompany = (index, company, allProjects, showModal) => {
       <div className="timeline-badge">
         <i className="glyphicon glyphicon-check" />
       </div>
-      <div className="timeline-panel">
+      <div
+        className={`timeline-panel ${focusedCompany === company ? 'highlight-box' : ''}`}
+        onMouseEnter={() => setFocusedCompany(company)}
+        onMouseLeave={() => setFocusedCompany(null)}
+      >
         <div className="timeline-heading">
           <h2 className="timeline-company">{company.name}</h2>
           {company.team && <span>{` (${company.team})`}</span>}
@@ -86,7 +92,14 @@ const renderCompany = (index, company, allProjects, showModal) => {
               {isTabSelected(selectedTab, 'technologies') && (
                 <div>
                   {technologies.map(technology => (
-                    <span key={technology} className="tag is-medium">
+                    <span
+                      key={technology}
+                      className={`tag is-medium box ${
+                        focusedTechnology === technology ? 'highlight-tag' : ''
+                      }`}
+                      onMouseEnter={() => setFocusedTechnology(technology)}
+                      onMouseLeave={() => setFocusedTechnology(null)}
+                    >
                       {technology}
                     </span>
                   ))}

@@ -126,7 +126,7 @@ const Projects = ({ projects, companies, location }) => {
                   className={`dropdown-item ${selectedCompany === company.name ? 'is-active' : ''}`}
                 >
                   {company.name}
-                  {company.team ? `(${company.team})` : ''}
+                  {company.team ? ` (${company.team})` : ''}
                 </a>
               ))}
             </div>
