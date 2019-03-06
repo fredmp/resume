@@ -5,143 +5,8 @@ import { StaticQuery, graphql } from 'gatsby';
 import Layout from '../components/layout';
 import SEO from '../components/seo';
 import ProjectModal from '../components/projectModal';
-import { decorateProject, filterProjects, companyPeriod } from '../util';
-
-const arrowClasses = state => `arrow arrow-down ${state && 'active'}`;
-
-const isTabSelected = (tab, name) => tab === name;
-
-const renderCompany = (index, company, allProjects, showModal) => {
-  const [showContent, setShowContent] = useState(true);
-  const [selectedTab, setSelectedTab] = useState('description');
-  const [focusedCompany, setFocusedCompany] = useState(null);
-  const [focusedTechnology, setFocusedTechnology] = useState(null);
-
-  const projects = filterProjects(company, allProjects, null, null);
-
-  const technologies = projects
-    .reduce((acc, project) => [...acc, ...project.technologies], [])
-    .filter((value, i, self) => self.indexOf(value) === i);
-
-  return (
-    <li
-      className={index % 2 === 0 ? 'timeline-inverted' : ''}
-      key={`${company.id}-${company.position}`}
-    >
-      <div className="timeline-badge">
-        <i className="glyphicon glyphicon-check" />
-      </div>
-      <div
-        className={`timeline-panel ${focusedCompany === company ? 'highlight-box' : ''}`}
-        onMouseEnter={() => setFocusedCompany(company)}
-        onMouseLeave={() => setFocusedCompany(null)}
-      >
-        <div className="timeline-heading">
-          <h2 className="timeline-company">{company.name}</h2>
-          {company.team && <span>{` (${company.team})`}</span>}
-          {' - '}
-          <span className="timeline-position">{company.position}</span>
-          <p className="timeline-period">
-            <small className="text-muted">
-              <i className="glyphicon glyphicon-time" />
-              {companyPeriod(company, projects)}
-            </small>
-          </p>
-          <div
-            role="button"
-            tabIndex={0}
-            className={arrowClasses(showContent)}
-            onClick={() => setShowContent(prevState => !prevState)}
-            onKeyPress={() => setShowContent(prevState => !prevState)}
-          />
-        </div>
-        {showContent && (
-          <div className="timeline-body">
-            <div className="tabs is-boxed">
-              <ul>
-                <li className={isTabSelected(selectedTab, 'description') ? 'is-active' : ''}>
-                  <a
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedTab('description')}
-                    onKeyPress={() => setSelectedTab('description')}
-                  >
-                    <span>Description</span>
-                  </a>
-                </li>
-                <li className={isTabSelected(selectedTab, 'projects') ? 'is-active' : ''}>
-                  <a
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedTab('projects')}
-                    onKeyPress={() => setSelectedTab('projects')}
-                  >
-                    <span>Projects</span>
-                  </a>
-                </li>
-                <li className={isTabSelected(selectedTab, 'technologies') ? 'is-active' : ''}>
-                  <a
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedTab('technologies')}
-                    onKeyPress={() => setSelectedTab('technologies')}
-                  >
-                    <span>Technologies</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <div className="timeline-content">
-              {isTabSelected(selectedTab, 'projects') && (
-                <div>
-                  {projects.length > 0 && (
-                    <ul className="projects">
-                      {projects.map(project => (
-                        <li key={`${project.name}-${company.id}`}>
-                          <a
-                            role="button"
-                            tabIndex={0}
-                            onClick={() => showModal(project)}
-                            onKeyPress={() => showModal(project)}
-                          >
-                            {project.name}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
-              )}
-              {isTabSelected(selectedTab, 'technologies') && (
-                <div>
-                  {technologies.map(technology => (
-                    <span
-                      key={technology}
-                      className={`tag is-medium box ${
-                        focusedTechnology === technology ? 'highlight-tag' : ''
-                      }`}
-                      onMouseEnter={() => setFocusedTechnology(technology)}
-                      onMouseLeave={() => setFocusedTechnology(null)}
-                    >
-                      {technology}
-                    </span>
-                  ))}
-                </div>
-              )}
-              {isTabSelected(selectedTab, 'description') && (
-                <div className="description_entries">
-                  {company.description_entries.map(description => (
-                    <p key={`${description}-${new Date().getTime()}`}>{description}</p>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        )}
-      </div>
-    </li>
-  );
-};
+import { decorateProject } from '../util';
+import Company from '../components/company';
 
 const Experience = ({ companies, projects }) => {
   const [selectedProject, setSelectedProject] = useState(null);
@@ -156,7 +21,10 @@ const Experience = ({ companies, projects }) => {
         <ul className="timeline">
           {companies
             .filter(company => !company.unlisted)
-            .map((company, index) => renderCompany(index, company, projects, showModal))}
+            .map((company, index) => {
+              const props = { index, company, showModal, allProjects: projects };
+              return <Company {...props} key={company.id} />;
+            })}
         </ul>
       </div>
       {selectedProject && (
@@ -174,7 +42,7 @@ Experience.propTypes = {
       position: PropTypes.string,
       period: PropTypes.string,
       team: PropTypes.string,
-      unlisted: PropTypes.boolean,
+      unlisted: PropTypes.bool,
       description_entries: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,

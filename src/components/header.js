@@ -34,8 +34,6 @@ const Header = ({ name, title }) => {
   const [showModal, setShowModal] = useState(false);
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  console.log(showMobileMenu);
-
   return (
     <Fragment>
       <section className="hero is-primary">
