@@ -82,7 +82,7 @@ const Company = ({ index, company, allProjects, showModal }) => {
                     onClick={() => setSelectedTab('technologies')}
                     onKeyPress={() => setSelectedTab('technologies')}
                   >
-                    <span>Technologies</span>
+                    <span>Keywords</span>
                   </a>
                 </li>
               </ul>
