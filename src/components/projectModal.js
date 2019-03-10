@@ -76,6 +76,9 @@ const ProjectModal = ({ project, closeModal }) => {
               )}
               {project.links && (
                 <div>
+                  <span className="has-text-weight-bold">Links:</span>
+                  <br />
+                  <br />
                   <ul>
                     {project.links.map(link => (
                       <li key={link}>

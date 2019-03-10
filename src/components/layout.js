@@ -11,6 +11,7 @@ import { StaticQuery, graphql } from 'gatsby';
 
 import Header from './header';
 import Footer from './footer';
+import PDFDocument from './pdf';
 import '../assets/styles/index.scss';
 
 const Layout = ({ children }) => (
@@ -31,6 +32,9 @@ const Layout = ({ children }) => (
           <Header {...data.site.siteMetadata} />
           {children}
           <Footer {...data.site.siteMetadata} />
+        </div>
+        <div style={{ display: 'none' }}>
+          <PDFDocument />
         </div>
       </Fragment>
     )}

@@ -87,8 +87,10 @@ const Header = ({ name, title }) => {
                 <a
                   className="navbar-item social"
                   target="_blank"
+                  role="button"
+                  tabIndex="0"
                   rel="noopener noreferrer"
-                  href="http://lagosvagas.com.br/resume-frederico.pdf"
+                  href="http://lagosvagas.com.br/Resume_Frederico-Martins-Porto.pdf"
                 >
                   <img src={downloadIcon} alt="Resume PDF" width="40" height="30" />
                   <span>Resume</span>

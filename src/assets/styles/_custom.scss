@@ -147,6 +147,18 @@ body {
 .modal-card-title {
   max-width: 100%;
 }
+.modal-card-body > form {
+  margin-bottom: 15px;
+}
+.not-active-link {
+  pointer-events: none;
+}
+ul.projects {
+  margin-bottom: 2px;
+}
+li.skill {
+  max-width: 100%;
+}
 @media (max-width: 768px) {
   .contact-links a span {
     display: none;
